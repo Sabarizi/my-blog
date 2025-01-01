@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
 const posts = [
+  // ... your posts array
   {
     id: "masjid-al-quba",
     title: "Masjid Al Quba",
@@ -75,8 +75,6 @@ Ibn Najjar (circa mid thirteenth century CE) notes that the distance between the
 In the time of Samhudi (circa 1470 CE) it was again bought by an influential person, restored, a garden and a small mosque was installed around it. A staircase was built to access the water during the low level season. This staircase may have survived today as well.`,
         image: "/ghars-well.jpg",
       },
-    
-  // Add more posts here as needed
 ];
 
 interface BlogPageProps {
@@ -87,36 +85,41 @@ const BlogPage = ({ params }: BlogPageProps) => {
   const { id } = params;
   const router = useRouter();
 
-  // Find the blog post based on the dynamic `id`
-  const post = posts.find((post) => post.id === id);
-
-  if (!post) {
-    return <div>Post not found</div>;
-  }
-
-  // Comments State
+  // Hooks at the top level
   const [comments, setComments] = useState<{ name: string; comment: string }[]>(
     []
+  );
+  const [post, setPost] = useState(() =>
+    posts.find((post) => post.id === id) || null
   );
 
   // Load Comments from LocalStorage
   useEffect(() => {
-    const savedComments = localStorage.getItem(`comments-${id}`);
-    if (savedComments) {
-      setComments(JSON.parse(savedComments));
+    if (post) {
+      const savedComments = localStorage.getItem(`comments-${id}`);
+      if (savedComments) {
+        setComments(JSON.parse(savedComments));
+      }
     }
-  }, [id]);
+  }, [id, post]);
 
   // Save Comments to LocalStorage
   const saveComments = (newComments: { name: string; comment: string }[]) => {
     setComments(newComments);
-    localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
+    if (post) {
+      localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
+    }
   };
 
   const handleAddComment = (name: string, comment: string) => {
     const newComments = [...comments, { name, comment }];
     saveComments(newComments);
   };
+
+  // If no post is found, show "Post not found" message
+  if (!post) {
+    return <div className="container mx-auto p-6">Post not found</div>;
+  }
 
   return (
     <div className="container mx-auto p-6">
@@ -140,6 +143,8 @@ const BlogPage = ({ params }: BlogPageProps) => {
           <Image
             src={post.image}
             alt={post.title}
+            width={400}
+            height={400}
             className="w-full h-full object-cover"
           />
         </div>

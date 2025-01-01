@@ -55,6 +55,8 @@ const BlogList = () => {
                 <Image
                   src={post.image}
                   alt={post.title}
+                  height={200}
+                  width={200}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
