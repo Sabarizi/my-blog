@@ -22,7 +22,7 @@ export default function Home() {
         </h1>
         <p className="text-lg md:text-2xl max-w-3xl mb-8">
           “I leave you two things. As long as you follow these, you will never
-          go astray: Allah’s Book and the Sunnah of the Prophet.”
+          go astray: Allah s Book and the Sunnah of the Prophet.”
           <br />
           [Muwatta, Al-Qadr (Decree); 3]
         </p>

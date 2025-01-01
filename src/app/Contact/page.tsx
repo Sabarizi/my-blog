@@ -21,13 +21,13 @@ const Contact = () => {
     <div className="container mx-auto p-6">
       <h1 className="text-4xl font-bold text-center mb-6">Contact Us</h1>
       <p className="text-gray-700 text-center mb-8">
-        Have questions or comments? We'd love to hear from you. Fill out the form below, and we'll get back to you as soon as possible.
+        Have questions or comments? We would love to hear from you. Fill out the form below, and we will get back to you as soon as possible.
       </p>
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg mx-auto">
         {isSubmitted ? (
           <div className="text-center">
             <h2 className="text-2xl font-bold text-green-500 mb-4">Thank you!</h2>
-            <p className="text-gray-700">Your message has been successfully sent. We'll contact you shortly.</p>
+            <p className="text-gray-700">Your message has been successfully sent. We will contact you shortly.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
