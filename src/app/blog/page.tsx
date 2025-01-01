@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const posts = [
   {
@@ -51,7 +52,7 @@ const BlogList = () => {
           >
             <Link href={`/blog/${post.id}`}>
               <div className="cursor-pointer">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
                   className="w-full h-48 object-cover"

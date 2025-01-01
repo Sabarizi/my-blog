@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 
 const posts = [
@@ -136,7 +137,7 @@ const BlogPage = ({ params }: BlogPageProps) => {
 
         {/* Image Section */}
         <div className="md:w-1/3">
-          <img
+          <Image
             src={post.image}
             alt={post.title}
             className="w-full h-full object-cover"
